@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../utility/firebase";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import loading from "../loading.svg"
 
-function Login() {
+function ForgotPassword() {
   const STATUS = {
     IDLE: "IDLE",
     SUBMITTED: "SUBMITTED",
@@ -15,7 +15,6 @@ function Login() {
 
   const [formData, setFormData] = React.useState({
     email: "",
-    password: "",
   });
 
   const [isStatus, setStatus] = React.useState(STATUS.IDLE);
@@ -50,18 +49,15 @@ function Login() {
     console.log(touched);
   }
 
-  console.log(formData);
-
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus(STATUS.SUBMITTING);
 
-    // const email = e.target.email.value
-    // const password = e.target.password.value
+    const email = e.target.email.value
     if (isValid) {
       try {
 
-        await signInWithEmailAndPassword(auth, formData.email, formData.password)
+        await sendPasswordResetEmail(auth, email)
           .then((userCredential) => {
           })
           .catch((error) => {
@@ -73,7 +69,7 @@ function Login() {
         setLoginError(error)
       }
       setStatus(STATUS.COMPLETED);
-      navigate("/")
+      navigate("login")
     } else {
       setStatus(STATUS.SUBMITTED);
     }
@@ -98,8 +94,6 @@ function Login() {
       // console.log("note corrre");
       result.email = "Email is not correct";
     }
-
-    if (!formData.password) result.password = "Please enter Password";
     return result;
   }
 
@@ -127,42 +121,22 @@ function Login() {
         </div>
 
         <br />
-
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handlechg}
-            onBlur={handleBlur}
-            value={formData.password}
-          />
-          <p className="error" role="alert">
-            {(touched.password || isStatus === STATUS.SUBMITTED) &&
-              errors.password}
-          </p>
-        </div>
-        <br />
         <button
           className="subBtn"
           type="submit"
-          disabled={!(formData.email || formData.password)}
+          disabled={!(formData.email)}
+
         >
-          Login
+          Reset
         </button>
       </form>
-
-      <Link to="/reset" className="links">
-        Forgot Password ?
-
-      </Link>
 
       <span className="logSpan ">
         <h5>Don't have an account? </h5>
         <Link className="links" to="/register">
-          <p className="links">
+          <a className="links">
             Sign Up
-          </p>
+          </a>
         </Link>
       </span>
     </div>
@@ -170,4 +144,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPassword;

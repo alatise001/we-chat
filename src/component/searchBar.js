@@ -13,7 +13,8 @@ function SearchBar() {
 
     const search = async () => {
         const q = query(collection(db, "users"),
-            where("displayName", "==", isUsername));
+            where("userid", "==", isUsername));
+        // where("displayName", "==", isUsername));
 
         try {
             const querySnapshot = await getDocs(q);
@@ -41,7 +42,10 @@ function SearchBar() {
     }
 
     const handleClick = async () => {
-        const chatId = `${isChatUser.userid + isUser.uid}`
+        const chatId = isUser.uid > isChatUser.userid
+            ? isUser.uid + isChatUser.userid
+            : isChatUser.userid + isUser.uid
+
         console.log(isChatUser.userid);
         console.log(chatId);
 
@@ -84,14 +88,14 @@ function SearchBar() {
     return (
         <div>
             <div className='scrBar'>
-                <input className='scrInput' type="search" name="search" onKeyDown={handleKey} onChange={handleChg} placeholder='Find a friend' />
+                <input className='scrInput' type="search" name="search" onKeyDown={handleKey} value={isUsername} onChange={handleChg} placeholder='Find a friend' />
             </div>
 
             {isErr && <p>User not found</p>}
 
             {
                 isChatUser &&
-                <div className="msgTab" onClick={() => handleClick}>
+                <div className="msgTab" onClick={handleClick}>
                     <img className="tabImg" src={isChatUser.photoURL} alt="" />
                     <div className="infoTab">
                         <h2 className="userName">{isChatUser.displayName}</h2>

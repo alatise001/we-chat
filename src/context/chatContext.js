@@ -13,7 +13,11 @@ function ChatContextProvider({ children }) {
             case "setChat":
                 return {
                     userDetails: action.details,
-                    chatId: `${action.details.uid + isUser.uid}`
+                    // chatId: isUser.uid > action.details.uid ? isUser.uid + action.details.uid : action.details.uid + isUser.uid,
+                    // chatId: `${action.details.uid + isUser.uid}`
+                    chatId: isUser.uid > action.details.uid
+                        ? isUser.uid + action.details.uid
+                        : action.details.uid + isUser.uid
                 }
 
             default:
@@ -21,7 +25,14 @@ function ChatContextProvider({ children }) {
         }
 
     }
-    const [chat, dispatch] = useReducer(selectChat, {})
+
+    const localState = JSON.parse(localStorage.getItem("chat"));
+
+    const [chat, dispatch] = useReducer(selectChat, localState)
+
+    React.useEffect(() => {
+        localStorage.setItem("chat", JSON.stringify(chat));
+    }, [chat]);
 
     return (
 

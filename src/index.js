@@ -5,6 +5,7 @@ import App from "./App";
 import ErrorBoundary from "./ErrorBoundary";
 import { BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./context/authContext";
+import ThemeContextProvider from "./context/themeContext";
 import ChatContextProvider from "./context/chatContext";
 
 
@@ -14,9 +15,11 @@ root.render(
     <ErrorBoundary>
       <BrowserRouter>
         <AuthContextProvider>
-          <ChatContextProvider>
-            <App />
-          </ChatContextProvider>
+          <ThemeContextProvider>
+            <ChatContextProvider>
+              <App />
+            </ChatContextProvider>
+          </ThemeContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </ErrorBoundary>

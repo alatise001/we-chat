@@ -7,6 +7,7 @@ import { AuthContext } from "../context/authContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../utility/firebase";
 import { ChatContext } from '../context/chatContext';
+import loading from "../loading.svg"
 
 function NotificationPanel() {
 
@@ -36,15 +37,17 @@ function NotificationPanel() {
     }
 
 
+    if (!isUser) return <img src={loading} alt="" />
+
     return (
         <div className="notePanel">
             <NotifyHeader />
             <SearchBar />
             {
-                Object.entries(userChats)?.map(map => (
+                Object.entries(userChats)?.sort((a, b) => b[1].date - a[1].date).map(map => (
                     <div className="chatlist" onClick={() => handleClick(map[1].userDetails)}>
 
-                        <Link to="/:id">
+                        <Link className='links' to={`/${map[1].userDetails.displayName}`}>
                             <NotifyTab details={map[1]} />
                         </Link>
 

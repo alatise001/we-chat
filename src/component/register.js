@@ -1,10 +1,15 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { auth, storage, db } from "../utility/firebase";
-import { ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import loading from "../loading.svg"
+
+// import{FirebaseAuthException}
 
 
 
@@ -28,7 +33,8 @@ function Register() {
 
   const [isStatus, setStatus] = React.useState(STATUS.IDLE);
   const [touched, setTouched] = React.useState({});
-  const [loginError, setLoginError] = React.useState(null)
+
+  const [loginError, setLoginError] = React.useState()
 
   const errors = getErrors();
   const isValid = Object.keys(errors).length === 0;
@@ -46,7 +52,7 @@ function Register() {
 
   function handleBlur(e) {
     console.log(e.target);
-    const { name, value, checked, type } = e.target;
+    const { name, } = e.target;
     setTouched((prevState) => {
       return {
         ...prevState,
@@ -96,7 +102,6 @@ function Register() {
         // const auth = auth;
         const res = await createUserWithEmailAndPassword(auth, email, password)
 
-        const date = new Date().getTime();
         const storageRef = ref(storage, `${displayName}`);
 
         await uploadBytesResumable(storageRef, fil).then(() => {
@@ -120,13 +125,24 @@ function Register() {
               navigate("/")
 
             } catch (error) {
-              setLoginError(error)
+              // setLoginError(prevState => {
+              //   return [
+              //     ...prevState,
+              //     error
+              //   ];
+              // })
             }
           })
         }
         )
       } catch (e) {
-        setLoginError(e)
+        // setLoginError(prevState => {
+        //   return [
+        //     ...prevState,
+        //     e
+
+        //   ];
+        // })
       }
       setStatus(STATUS.COMPLETED);
       console.log(formData);
@@ -158,118 +174,124 @@ function Register() {
       result.confirmPassword = "Password doesn't match";
     }
 
-    if (!formData.userPhoto) result.userPhoto = "Select a Picture"
+    // if (!formData.userPhoto) result.userPhoto = "Select a Picture"
     return result;
   }
 
   if (loginError) throw loginError
 
+  if (isStatus === "SUBMITTING") return (<div className="container"><img className="loading" src={loading} alt="" /></div>)
+
   return (
-    <div className="container">
-      <div className="form ">
-        <form onSubmit={handleSubmit}>
-          <br />
-          <div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Username"
-              onChange={handlechg}
-              onBlur={handleBlur}
-              value={formData.name}
-            />
-            <p className="error" role="alert">
-              {(touched.name || isStatus === STATUS.SUBMITTED) && errors.name}
-            </p>
-          </div>
-          <br />
-          <div>
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              onChange={handlechg}
-              onBlur={handleBlur}
-              value={formData.email}
-            />
-            <p className="error" role="alert">
-              {(touched.email || isStatus === STATUS.SUBMITTED) && errors.email}
-            </p>
-          </div>
-          <br />
-          <div>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handlechg}
-              onBlur={handleBlur}
-              value={formData.password}
-            />
-            <p className="error" role="alert">
-              {(touched.password || isStatus === STATUS.SUBMITTED) &&
-                errors.password}
-            </p>
-          </div>
-          <br />
-          <div>
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              onChange={handlechg}
-              onBlur={handleBlur}
-              value={formData.confirmPassword}
-            />
-            <p className="error" role="alert">
-              {(touched.confirmPassword || isStatus === STATUS.SUBMITTED) &&
-                errors.confirmPassword}
-            </p>
-          </div>
-          <br />
+    // <div className="containr">
+    <div className="form ">
+      <form onSubmit={handleSubmit}>
+        <br />
+        <div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Username"
+            onChange={handlechg}
+            onBlur={handleBlur}
+            value={formData.name}
+          />
+          <p className="error" role="alert">
+            {(touched.name || isStatus === STATUS.SUBMITTED) && errors.name}
+          </p>
+        </div>
+        <br />
+        <div>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={handlechg}
+            onBlur={handleBlur}
+            value={formData.email}
+          />
+          <p className="error" role="alert">
+            {(touched.email || isStatus === STATUS.SUBMITTED) && errors.email}
+          </p>
+        </div>
+        <br />
+        <div>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handlechg}
+            onBlur={handleBlur}
+            value={formData.password}
+          />
+          <p className="error" role="alert">
+            {(touched.password || isStatus === STATUS.SUBMITTED) &&
+              errors.password}
+          </p>
+        </div>
+        <br />
+        <div>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            onChange={handlechg}
+            onBlur={handleBlur}
+            value={formData.confirmPassword}
+          />
+          <p className="error" role="alert">
+            {(touched.confirmPassword || isStatus === STATUS.SUBMITTED) &&
+              errors.confirmPassword}
+          </p>
+        </div>
+        <br />
 
-          <div>
-            <input
-              id="userPhoto"
-              style={{ display: "none" }}
-              type="file"
-              name="userPhoto"
-              // placeholder="Confirm Password"
-              onChange={handlechg}
-              onBlur={handleBlur}
-              value={formData.userPhoto}
-            />
+        <div>
+          <input
+            id="userPhoto"
+            style={{ display: "none" }}
+            type="file"
+            name="userPhoto"
+            // placeholder="Confirm Password"
+            onChange={handlechg}
+            onBlur={handleBlur}
+            value={formData.userPhoto}
+          />
 
-            <label htmlFor="userPhoto" >
-              <span>🖼️</span>
-              <span> Add an profile picture</span>
-            </label>
-            <p className="error" role="alert">
-              {(touched.userPhoto || isStatus === STATUS.SUBMITTED) &&
-                errors.userPhoto}
-            </p>
-          </div>
+          <label htmlFor="userPhoto" >
+            <span>
+              <FontAwesomeIcon className="icon" icon={faImage} />
+            </span>
+            <span> Add an profile picture</span>
+          </label>
+          <p className="error" role="alert">
+            {(touched.userPhoto || isStatus === STATUS.SUBMITTED) &&
+              errors.userPhoto}
+          </p>
+        </div>
 
-          <br />
-          <button
-            className="subBtn"
-            type="submit"
-            disabled={!isValid}
-          >
-            Sign Up
-          </button>
-        </form>
-        {/* {isStatus === STATUS.COMPLETED && (
+        <br />
+        <button
+          className="subBtn"
+          type="submit"
+          disabled={!isValid}
+        >
+          Sign Up
+        </button>
+      </form>
+      {/* {isStatus === STATUS.COMPLETED && (
         <div>{`${formData.email}, ${formData.password}`}</div>
       )} */}
-        <span className="logSpan ">
-          <h5>Already have an account? </h5>
-          <a href="#" target="_blank" rel="noopener noreferrer">
+      <span className="logSpan ">
+        <h5>Already have an account? </h5>
+        <Link className="links" to="/login">
+          <a className="links">
             Login
           </a>
-        </span>
-      </div>
-    </div >
+        </Link>
+      </span>
+    </div>
+    // </div >
   );
 }
 
