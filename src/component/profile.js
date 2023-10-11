@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { ThemeContext } from "../context/themeContext";
+import React from 'react'
+// import { ThemeContext } from "../context/themeContext";
 import { AuthContext } from "../context/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
@@ -14,31 +14,31 @@ function Profile() {
     const { isUser } = React.useContext(AuthContext)
     console.log(isUser);
 
-    const { themes: theme } = useContext(ThemeContext)
+    // const { themes: theme } = useContext(ThemeContext)
 
-    const back = () => {
-        console.log("clicked");
-        if (theme.theme === "dark") {
-            return {
-                backgroundColor: "#111111",
-                color: "white",
-                border: ".09rem solid rgba(255, 255, 255, 0.8)",
-                borderLeft: "none",
-                borderRight: "none"
+    // const back = () => {
+    //     console.log("clicked");
+    //     if (theme.theme === "dark") {
+    //         return {
+    //             backgroundColor: "#111111",
+    //             color: "white",
+    //             border: ".09rem solid rgba(255, 255, 255, 0.8)",
+    //             borderLeft: "none",
+    //             borderRight: "none"
 
-            };
-        } else if (theme.theme === "light") {
-            return {
-                backgroundColor: "#fff",
-                color: "black",
-                border: ".09rem solid rgba(0, 0, 0, 0.8)",
-                borderLeft: "none",
-                borderRight: "none"
-            };
-        } else {
-            return
-        }
-    };
+    //         };
+    //     } else if (theme.theme === "light") {
+    //         return {
+    //             backgroundColor: "#fff",
+    //             color: "black",
+    //             border: ".09rem solid rgba(0, 0, 0, 0.8)",
+    //             borderLeft: "none",
+    //             borderRight: "none"
+    //         };
+    //     } else {
+    //         return
+    //     }
+    // };
 
 
     return (
@@ -49,7 +49,7 @@ function Profile() {
             </div>
 
             <div className='profileInfo'>
-                <div className='profileSection' style={back()}>
+                <div className='profileSection'>
                     <h2 className='title' >UserId</h2>
                     <div className='text-copy'>
                         <p>{isUser.uid}</p>
@@ -57,7 +57,7 @@ function Profile() {
                     </div>
                 </div>
 
-                <div className='profileSection' style={back()}>
+                <div className='profileSection'>
                     <h2 className='title'>Display Name</h2>
                     {/* <EditText
                         name='displayName'
@@ -73,7 +73,7 @@ function Profile() {
                     <p className='text'>{isUser.displayName}</p>
                 </div>
 
-                <div className='profileSection' style={back()}>
+                <div className='profileSection'>
                     <h2 className='title'>Email</h2>
                     <p className='text'>{isUser.email}</p>
                 </div>

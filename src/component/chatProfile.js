@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ThemeContext } from "../context/themeContext";
+// import { ThemeContext } from "../context/themeContext";
 import { ChatContext } from '../context/chatContext';
 
 // import { ChatContext } from '../context/chatContext';
@@ -20,31 +20,31 @@ function ChatProfile() {
     // const { data } = useContext(ChatContext)
     // console.log(data);
 
-    const { themes: theme } = useContext(ThemeContext)
+    // const { themes: theme } = useContext(ThemeContext)
 
-    const back = () => {
-        console.log("clicked");
-        if (theme.theme === "dark") {
-            return {
-                backgroundColor: "#111111",
-                color: "white",
-                border: ".09rem solid rgba(255, 255, 255, 0.8)",
-                borderLeft: "none",
-                borderRight: "none"
+    // const back = () => {
+    //     console.log("clicked");
+    //     if (theme.theme === "dark") {
+    //         return {
+    //             backgroundColor: "#111111",
+    //             color: "white",
+    //             border: ".09rem solid rgba(255, 255, 255, 0.8)",
+    //             borderLeft: "none",
+    //             borderRight: "none"
 
-            };
-        } else if (theme.theme === "light") {
-            return {
-                backgroundColor: "#fff",
-                color: "black",
-                border: ".09rem solid rgba(0, 0, 0, 0.8)",
-                borderLeft: "none",
-                borderRight: "none"
-            };
-        } else {
-            return
-        }
-    };
+    //         };
+    //     } else if (theme.theme === "light") {
+    //         return {
+    //             backgroundColor: "#fff",
+    //             color: "black",
+    //             border: ".09rem solid rgba(0, 0, 0, 0.8)",
+    //             borderLeft: "none",
+    //             borderRight: "none"
+    //         };
+    //     } else {
+    //         return
+    //     }
+    // };
 
 
     return (
@@ -55,7 +55,7 @@ function ChatProfile() {
             </div>
 
             <div className='profileInfo'>
-                <div className='profileSection' style={back()}>
+                <div className='profileSection'>
                     <h2 className='title' >UserId</h2>
                     <div className='text-copy'>
                         <p>{data.userDetails.uid}</p>
@@ -63,7 +63,7 @@ function ChatProfile() {
                     </div>
                 </div>
 
-                <div className='profileSection' style={back()}>
+                <div className='profileSection'>
                     <h2 className='title'>Display Name</h2>
                     {/* <EditText
                         name='displayName'

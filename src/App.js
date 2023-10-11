@@ -9,40 +9,40 @@ import Register from "./component/register";
 import Chats from "./container/chats";
 import NotificationPanel from "./container/notificationPanel";
 import { AuthContext } from "./context/authContext";
-import { ThemeContext } from "./context/themeContext";
+// import { ThemeContext } from "./context/themeContext";
 import PageNotFound from "./PageNotFound";
 
 
 function App() {
 
   const { isUser } = useContext(AuthContext)
-  const { themes: theme } = useContext(ThemeContext)
-  console.log(theme.theme);
+  // const { themes: theme } = useContext(ThemeContext)
+  // console.log(theme.theme);
 
   // const style = {
   //   backgroundColor: "white",
   //   // backgroundColor: `${theme === "default" ? "#040D12" : theme === "light" ? "#fff" : "#111111"}`
   // }
 
-  const back = () => {
-    console.log("clicked");
-    if (theme.theme === "dark") {
-      return {
-        backgroundColor: "#111111",
-        color: "white"
+  // const back = () => {
+  //   console.log("clicked");
+  //   if (theme.theme === "dark") {
+  //     return {
+  //       backgroundColor: "#111111",
+  //       color: "white"
 
 
-      };
-    } else if (theme.theme === "light") {
-      return {
-        backgroundColor: "#fff",
-        color: "black"
+  //     };
+  //   } else if (theme.theme === "light") {
+  //     return {
+  //       backgroundColor: "#fff",
+  //       color: "black"
 
-      };
-    } else {
-      return
-    }
-  };
+  //     };
+  //   } else {
+  //     return
+  //   }
+  // };
 
   const ReRoute = ({ children }) => {
     if (!isUser) {
@@ -54,7 +54,7 @@ function App() {
 
   console.log(isUser);
   return (
-    <div className="container" style={back()}>
+    <div className="container">
       <Routes>
         <Route path="/">
           <Route path="/login" element={<Login />} />

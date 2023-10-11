@@ -1,38 +1,38 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../context/themeContext";
+// import { ThemeContext } from "../context/themeContext";
 import { ChatContext } from "../context/chatContext";
 import { Link } from "react-router-dom";
 
 
 function ChatHeader() {
   const { data } = React.useContext(ChatContext)
-  const { themes: theme } = useContext(ThemeContext)
+  // const { themes: theme } = useContext(ThemeContext)
 
 
-  console.log(data);
+  // console.log(data);
 
-  const back = () => {
-    console.log("clicked");
-    if (theme.theme === "dark") {
-      return {
-        backgroundColor: "#111111",
-        color: "white"
+  // const back = () => {
+  //   console.log("clicked");
+  //   if (theme.theme === "dark") {
+  //     return {
+  //       backgroundColor: "#111111",
+  //       color: "white"
 
-      };
-    } else if (theme.theme === "light") {
-      return {
-        backgroundColor: "#fff",
-        color: "black"
+  //     };
+  //   } else if (theme.theme === "light") {
+  //     return {
+  //       backgroundColor: "#fff",
+  //       color: "black"
 
-      };
-    } else {
-      return
-    }
-  };
+  //     };
+  //   } else {
+  //     return
+  //   }
+  // };
 
 
   return (
-    <header className="chatHeader" style={back()}>
+    <header className="chatHeader">
       <Link className="links" to={`/${data.userDetails.displayName}` + " profile"}>
         <div className="chatUserInfo">
           <img className="headImgchat" src={data.userDetails.photoURL} alt="" />
