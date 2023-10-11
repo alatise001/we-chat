@@ -18,9 +18,9 @@ function NotifyHeader() {
           <FontAwesomeIcon className="icon" icon={faUser} />
         </Link>
 
-        <Link className="links" to="/settings">
+        {/* <Link className="links" to="/settings">
           <FontAwesomeIcon className="icon" icon={faGear} />
-        </Link>
+        </Link> */}
 
         <button className="logoutBtn" onClick={() => { signOut(auth) }}>Logout</button>
       </div>
