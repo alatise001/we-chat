@@ -38,7 +38,7 @@ function SearchBar() {
     }
 
     const handleKey = (e) => {
-        e.code === "Enter" && search()
+        search()
     }
 
     const handleClick = async () => {
