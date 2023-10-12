@@ -29,13 +29,14 @@ function ChatHeader() {
   //     return
   //   }
   // };
+  console.log(data.userDetails.photoURL);
 
 
   return (
     <header className="chatHeader">
       <Link className="links" to={`/${data.userDetails.displayName}` + " profile"}>
         <div className="chatUserInfo">
-          <img className="headImgchat" src={data.userDetails.photoURL} alt="" />
+          <img className="headImgchat" defaultValue="/images/user.png" src={data.userDetails.photoURL ? data.userDetails.photoURL : "/images/user.png"} alt="" />
           <h1 className="chatUserName">{data.userDetails.displayName}</h1>
         </div>
       </Link>

@@ -223,15 +223,7 @@ a,
   margin-top: 1rem;
 }
 
-.headImgchat {
-  background-image: url("../public/images/user.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 3rem;
-  aspect-ratio: 1;
-  border-radius: 4rem;
-}
+
 
 .chats {
   display: grid;
@@ -262,7 +254,16 @@ a,
   display: flex;
   align-items: center;
   gap: .6rem;
-  width: 70%;
+}
+
+.headImgchat {
+  background-image: url("../public/images/user.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 4rem;
+  aspect-ratio: 1;
+  border-radius: 4rem;
 }
 
 .chatHeaderIcons {
@@ -359,6 +360,15 @@ textarea::placeholder {
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
 .message {
