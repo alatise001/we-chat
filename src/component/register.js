@@ -200,7 +200,9 @@ function Register() {
             {(touched.name || isStatus === STATUS.SUBMITTED) && errors.name}
           </p>
         </div>
+
         <br />
+
         <div>
           <input
             type="text"
@@ -230,6 +232,7 @@ function Register() {
           </p>
         </div>
         <br />
+
         <div>
           <input
             type="password"

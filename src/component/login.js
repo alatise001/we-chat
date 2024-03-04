@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import loading from "../loading.svg"
 
 function Login() {
+
   const STATUS = {
     IDLE: "IDLE",
     SUBMITTED: "SUBMITTED",
