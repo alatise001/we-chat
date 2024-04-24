@@ -228,7 +228,7 @@ a,
 .chats {
   display: grid;
   color: #040D12;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 10% 84% 6%;
   height: 100vh;
   width: 100%;
 }
@@ -362,6 +362,7 @@ textarea::placeholder {
   flex-direction: column;
   overflow: auto;
   scroll-behavior: smooth;
+  padding: 0 .8rem;
 }
 
 ::-webkit-scrollbar {
@@ -520,4 +521,44 @@ textarea::placeholder {
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+  .container {
+    background-color: #040D12;
+    color: #93B1A6;
+    max-width: none;
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+  }
+
+  .combined {
+    width: 100%;
+    display: grid;
+    gap: .1rem;
+    grid-template-columns: 1.3fr 2fr;
+    /* grid-template-columns: repeat(auto-fit, minmax(50px 1fr)); */
+    grid-template-rows: 1fr;
+  }
+
+  .notePanel {
+    border-right: .1rem solid black;
+  }
+
+  .messages {
+    padding: 0 1rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .combined {
+    grid-template-columns: .8fr 2fr;
+  }
+
+  .messages {
+    padding: 0 2.5rem;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import { Navigate, Route, Routes, } from "react-router-dom";
 import Login from "./component/login";
 import ForgotPassword from "./component/forgotPassword";
@@ -11,6 +11,10 @@ import NotificationPanel from "./container/notificationPanel";
 import { AuthContext } from "./context/authContext";
 // import { ThemeContext } from "./context/themeContext";
 import PageNotFound from "./PageNotFound";
+
+import Media from 'react-media'
+import CombinedLayout from "./component/combinedLayout";
+import { faMagicWandSparkles } from "@fortawesome/free-solid-svg-icons";
 
 
 function App() {
@@ -55,20 +59,41 @@ function App() {
   console.log(isUser);
   return (
     <div className="container">
+      {/* <Media query={"max-width:599px"}>
+        {matches => matches ? (
+          <Fragment>
+            <Routes>
+              <Route path="/" />
+              <Route path="/:id" element={<Chats />} />
+            </Routes>
+          </Fragment>
+        ) : (<Fragment>
+          <Routes>
+            <Route path="/dashboard" element={<CombinedLayout />} />
+          </Routes>
+        </Fragment>)}
+      </Media> */}
       <Routes>
-        <Route path="/">
-          <Route path="/login" element={<Login />} />
-          <Route path="/reset" element={<ForgotPassword />} />
-          <Route path="/register" element={<Register />} />
-          <Route index element={<ReRoute>
-            <NotificationPanel />
-          </ReRoute>} />
-          <Route path="/:id" element={<Chats />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path={"/:id" + " profile"} element={<ChatProfile />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route element={<PageNotFound />} />
-        </Route>
+        {/* <Route path="/"> */}
+
+        <Route path="/" />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/reset" element={<ForgotPassword />} />
+        <Route path="/register" element={<Register />} />
+        <Route index element={<ReRoute>
+          {/* <NotificationPanel /> */}
+          <Media query="(min-width:600px)">
+            {matches => matches ? (<CombinedLayout />) : (<NotificationPanel />)}
+          </Media>
+          {/* <CombinedLayout /> */}
+        </ReRoute>} />
+        <Route path="/:id" element={<Chats />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path={"/:id" + " profile"} element={<ChatProfile />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route element={<PageNotFound />} />
+        {/* </Route> */}
       </Routes>
     </div>
   );
