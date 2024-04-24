@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, } from "react";
 import { Navigate, Route, Routes, } from "react-router-dom";
 import Login from "./component/login";
 import ForgotPassword from "./component/forgotPassword";
@@ -11,10 +11,8 @@ import NotificationPanel from "./container/notificationPanel";
 import { AuthContext } from "./context/authContext";
 // import { ThemeContext } from "./context/themeContext";
 import PageNotFound from "./PageNotFound";
-
-import Media from 'react-media'
 import CombinedLayout from "./component/combinedLayout";
-import { faMagicWandSparkles } from "@fortawesome/free-solid-svg-icons";
+import { useMediaQuery } from 'react-responsive'
 
 
 function App() {
@@ -47,6 +45,8 @@ function App() {
   //     return
   //   }
   // };
+
+  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' })
 
   const ReRoute = ({ children }) => {
     if (!isUser) {
@@ -83,12 +83,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route index element={<ReRoute>
           {/* <NotificationPanel /> */}
-          <Media query="(min-width:600px)">
-            {matches => matches ? (<CombinedLayout />) : (<NotificationPanel />)}
-          </Media>
+          {isTabletOrMobile ? (<CombinedLayout />) : (<NotificationPanel />)}
+
           {/* <CombinedLayout /> */}
         </ReRoute>} />
-        <Route path="/:id" element={<Chats />} />
+        <Route path="/:id" element={isTabletOrMobile ? (<CombinedLayout />) : (<Chats />)} />
         <Route path="/profile" element={<Profile />} />
         <Route path={"/:id" + " profile"} element={<ChatProfile />} />
         <Route path="/settings" element={<Settings />} />
