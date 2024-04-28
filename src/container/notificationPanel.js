@@ -8,6 +8,8 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../utility/firebase";
 import { ChatContext } from '../context/chatContext';
 import loading from "../loading.svg"
+import { formatDistance, subDays, format, formatDistanceToNow, getMinutes, getHours } from "date-fns";
+
 
 function NotificationPanel() {
 
@@ -30,8 +32,6 @@ function NotificationPanel() {
         isUser.uid && getUser()
     }, [isUser.uid])
 
-    console.log(Object.entries(userChats));
-
     function handleClick(params) {
         dispatch({ type: "setChat", details: params })
     }
@@ -44,12 +44,19 @@ function NotificationPanel() {
             <NotifyHeader />
             <SearchBar />
             {
-                Object.entries(userChats)?.sort((a, b) => b[1].date - a[1].date).map(map => (
+                Object.entries(userChats)?.sort((a, b) => a[1].userDetails.date.toDate() - b[1].userDetails.date.toDate()).map(map => (
                     <div className="chatlist" onClick={() => handleClick(map[1].userDetails)}>
 
                         <Link className='links' to={`/${map[1].userDetails.displayName}`}>
                             <NotifyTab details={map[1]} />
                         </Link>
+
+                        <small className={`time`}>{formatDistanceToNow
+                            (map[1].userDetails.date.toDate(), {
+                                includeSeconds: true,
+                                addSuffix: true,
+                                addPrefix: true
+                            })}</small>
 
                     </div>
                 ))

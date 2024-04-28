@@ -15,11 +15,11 @@ root.render(
     <ErrorBoundary>
       <BrowserRouter>
         <AuthContextProvider>
-          {/* <ThemeContextProvider> */}
-          <ChatContextProvider>
-            <App />
-          </ChatContextProvider>
-          {/* </ThemeContextProvider> */}
+          <ThemeContextProvider>
+            <ChatContextProvider>
+              <App />
+            </ChatContextProvider>
+          </ThemeContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </ErrorBoundary>

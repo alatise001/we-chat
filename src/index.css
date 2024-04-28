@@ -3,10 +3,25 @@ html {
   font-size: 16px;
 }
 
+:root {
+  /* this has to be set to switch between light or dark */
+  color-scheme: light dark;
+
+  /* --light-bg: ghostwhite;
+  --light-color: darkslategray;
+  --light-code: tomato;
+
+  --dark-bg: darkslategray;
+  --dark-color: ghostwhite;
+  --dark-code: gold; */
+}
+
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+  /* background-color: light-dark(white, black);
+  color: light-dark(black, white); */
 }
 
 body,
@@ -36,14 +51,24 @@ img {
 }
 
 .container {
-  background-color: #040D12;
-  color: #93B1A6;
+  background-color: light-dark(#F0F0F0, #121212);
+  color: light-dark(black, #C7C8CC);
   max-width: 720px;
   margin: 0 auto;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.light {
+  /* forces light color-scheme */
+  color-scheme: light;
+}
+
+.dark {
+  /* forces dark color-scheme */
+  color-scheme: dark;
 }
 
 .loading {
@@ -148,8 +173,8 @@ a,
 
 .logoutBtn:hover {
   /* note */
-  background-color: #93B1A6;
-  color: #040D12;
+  background-color: light-dark(#282828, white);
+  color: light-dark(white, #121212);
 }
 
 .tabImg {
@@ -196,7 +221,7 @@ a,
 
 .msgTab:hover {
   /* note*/
-  background-color: #5C8374;
+  background-color: light-dark(#888888, #282828);
 }
 
 .infoTab {
@@ -211,7 +236,8 @@ a,
 }
 
 .userName:hover {
-  background-color: #5C8374;
+  background-color: light-dark(#888888, #282828);
+
 }
 
 .recentmsg {
@@ -227,10 +253,11 @@ a,
 
 .chats {
   display: grid;
-  color: #040D12;
+  /* color: #040D12; */
   grid-template-rows: 10% 84% 6%;
   height: 100vh;
   width: 100%;
+  /* gap: .1rem; */
 }
 
 .chatUserName {
@@ -239,7 +266,8 @@ a,
 }
 
 .chatHeader {
-  background-color: #5C8374;
+  /* background-color: #5C8374; */
+  background-color: light-dark(#F0F0F0, #282828);
   padding: .5rem;
   display: flex;
   border-bottom: .15rem solid rgba(0, 0, 0, 0.1);
@@ -285,7 +313,7 @@ a,
 
 .input-div {
   /* note*/
-  background-color: #5C8374;
+  background-color: light-dark(#F0F0F0, #282828);
   border-top: .15rem solid rgba(0, 0, 0, 0.1);
   padding: .6rem;
   text-align: center;
@@ -363,6 +391,8 @@ textarea::placeholder {
   overflow: auto;
   scroll-behavior: smooth;
   padding: 0 .8rem;
+  gap: .2rem;
+  background-color: light-dark(#888888, #121212);
 }
 
 ::-webkit-scrollbar {
@@ -374,32 +404,68 @@ textarea::placeholder {
 
 .message {
   font-size: 1.1rem;
-  height: fit-content;
-  padding: 0.4rem .3rem;
-  margin: .8rem .5rem;
-  background-color: #5C8374;
-  max-width: 60%;
+  padding: 1.1rem;
+  border-radius: 5px;
+  margin: .2rem 0;
+  background-color: light-dark(#F8F6F4, #282828);
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  /* outline: auto; */
+}
+
+.time {
+  font-size: .7rem;
+  /* padding-bottom: .6rem; */
+  height: .7rem;
+}
+
+.time-sent-div {
+  align-self: self-end;
 }
 
 .message-div {
-  border-radius: 0 .2rem .2rem .9rem;
+  /* height: 3.5rem; */
+  /* border-radius: 0 .2rem .2rem .9rem; */
   align-self: baseline;
+  padding-right: 1.5rem;
+  padding-left: .5rem;
 }
 
 .message-sent-div {
-  box-shadow: 0px 2.98256px rgba(0, 0, 0, 0.1);
-  border-radius: .2rem .2rem .9rem 0;
+  /* height: 3.5rem; */
+  /* box-shadow: 0px 2.98256px rgba(0, 0, 0, 0.1); */
+  /* border-radius: .2rem .2rem .9rem 0; */
   align-self: end;
+  text-align: right;
+
+  padding-left: 2rem;
+  padding-right: .5rem;
+  background-color: light-dark(#B4B4B8, #1a1625);
 }
 
 .msg-img {
   /* padding: 0.6rem .6rem; */
+  /* height: 70%; */
 }
 
 .msg-phg {
   color: inherit;
   font-weight: 500;
-  line-break: anywhere;
+  line-break: auto;
+  height: 100%;
+
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.msg-phg-sent-div {
+  justify-content: end;
 }
 
 .profile {
@@ -409,7 +475,7 @@ textarea::placeholder {
   padding: 0 .5rem;
   height: 100vh;
   width: 100%;
-  color: #93B1A6;
+  /* color: #93B1A6; */
 }
 
 .profileImgDiv {
@@ -527,8 +593,6 @@ textarea::placeholder {
 @media only screen and (min-width: 768px) {
 
   .container {
-    background-color: #040D12;
-    color: #93B1A6;
     max-width: none;
     width: 100%;
     margin: 0 auto;

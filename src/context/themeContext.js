@@ -7,13 +7,13 @@ function ThemeContextProvider({ children }) {
 
     const localState = JSON.parse(localStorage.getItem("themes"));
 
-    const [themes, setTheme] = React.useState({
-        theme: "default"
-    })
+    const [themes, setTheme] = React.useState(localState || "light")
 
     React.useEffect(() => {
         localStorage.setItem("themes", JSON.stringify(themes));
     }, [themes]);
+
+    console.log(themes);
 
     return (
 

@@ -9,42 +9,16 @@ import Register from "./component/register";
 import Chats from "./container/chats";
 import NotificationPanel from "./container/notificationPanel";
 import { AuthContext } from "./context/authContext";
-// import { ThemeContext } from "./context/themeContext";
 import PageNotFound from "./PageNotFound";
 import CombinedLayout from "./component/combinedLayout";
 import { useMediaQuery } from 'react-responsive'
+import { ThemeContext } from "./context/themeContext";
 
 
 function App() {
 
   const { isUser } = useContext(AuthContext)
-  // const { themes: theme } = useContext(ThemeContext)
-  // console.log(theme.theme);
-
-  // const style = {
-  //   backgroundColor: "white",
-  //   // backgroundColor: `${theme === "default" ? "#040D12" : theme === "light" ? "#fff" : "#111111"}`
-  // }
-
-  // const back = () => {
-  //   console.log("clicked");
-  //   if (theme.theme === "dark") {
-  //     return {
-  //       backgroundColor: "#111111",
-  //       color: "white"
-
-
-  //     };
-  //   } else if (theme.theme === "light") {
-  //     return {
-  //       backgroundColor: "#fff",
-  //       color: "black"
-
-  //     };
-  //   } else {
-  //     return
-  //   }
-  // };
+  const { themes } = useContext(ThemeContext)
 
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' })
 
@@ -58,21 +32,7 @@ function App() {
 
   console.log(isUser);
   return (
-    <div className="container">
-      {/* <Media query={"max-width:599px"}>
-        {matches => matches ? (
-          <Fragment>
-            <Routes>
-              <Route path="/" />
-              <Route path="/:id" element={<Chats />} />
-            </Routes>
-          </Fragment>
-        ) : (<Fragment>
-          <Routes>
-            <Route path="/dashboard" element={<CombinedLayout />} />
-          </Routes>
-        </Fragment>)}
-      </Media> */}
+    <div className={`container ${(themes === "light") ? "light" : "dark"}`}>
       <Routes>
         {/* <Route path="/"> */}
 
