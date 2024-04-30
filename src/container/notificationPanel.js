@@ -44,19 +44,19 @@ function NotificationPanel() {
             <NotifyHeader />
             <SearchBar />
             {
-                Object.entries(userChats)?.sort((a, b) => a[1].userDetails.date.toDate() - b[1].userDetails.date.toDate()).map(map => (
+                Object.entries(userChats)?.sort((b, a) => a[1].userDetails.date.toDate() - b[1].userDetails.date.toDate()).map(map => (
                     <div className="chatlist" onClick={() => handleClick(map[1].userDetails)}>
 
                         <Link className='links' to={`/${map[1].userDetails.displayName}`}>
                             <NotifyTab details={map[1]} />
                         </Link>
 
-                        <small className={`time`}>{formatDistanceToNow
+                        {/* <small className={`time`}>{formatDistanceToNow
                             (map[1].userDetails.date.toDate(), {
                                 includeSeconds: true,
                                 addSuffix: true,
                                 addPrefix: true
-                            })}</small>
+                            })}</small> */}
 
                     </div>
                 ))

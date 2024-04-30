@@ -392,7 +392,9 @@ textarea::placeholder {
   scroll-behavior: smooth;
   padding: 0 .8rem;
   gap: .2rem;
-  background-color: light-dark(#888888, #121212);
+  background-color: light-dark(#d2d3db,
+      #121212);
+  /* background-color: light-dark(#888888, #121212); */
 }
 
 ::-webkit-scrollbar {

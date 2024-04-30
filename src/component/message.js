@@ -3,7 +3,6 @@ import { formatDistance, subDays, format, formatDistanceToNow, getMinutes, getHo
 
 function Message({ map, id }) {
 
-    console.log(map);
     const { formatRelative } = require("date-fns");
 
     // console.log(formatDistance(map.date.toDate(), new Date.now().));
@@ -20,9 +19,9 @@ function Message({ map, id }) {
     //     formatRelative(subDays(map.date.toDate(), 6), new Date())
     // );
 
-    console.log(
-        `${getHours(map.date.toDate())}:${getMinutes(map.date.toDate())}`
-    );
+    // console.log(
+    //     `${getHours(map.date.toDate())}:${getMinutes(map.date.toDate())}`
+    // );
 
     return (
         <div style={{ scrollBehavior: "smooth" }} className={`${map.senderId === id ? "message-div" : "message-sent-div"} message`}>

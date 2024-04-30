@@ -12,7 +12,6 @@ import { faCopy } from "@fortawesome/free-solid-svg-icons";
 function Profile() {
 
     const { isUser } = React.useContext(AuthContext)
-    console.log(isUser);
 
     // const { themes: theme } = useContext(ThemeContext)
 

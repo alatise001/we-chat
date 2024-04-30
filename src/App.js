@@ -30,7 +30,6 @@ function App() {
     return children
   }
 
-  console.log(isUser);
   return (
     <div className={`container ${(themes === "light") ? "light" : "dark"}`}>
       <Routes>

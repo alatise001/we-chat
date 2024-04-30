@@ -13,7 +13,6 @@ function ThemeContextProvider({ children }) {
         localStorage.setItem("themes", JSON.stringify(themes));
     }, [themes]);
 
-    console.log(themes);
 
     return (
 

@@ -13,7 +13,6 @@ function AuthContextProvider({ children }) {
     React.useEffect(() => {
         const unsub = onAuthStateChanged(auth, user => {
             setUser(user)
-            console.log(user);
         })
 
         return () => {

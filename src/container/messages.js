@@ -18,12 +18,10 @@ function Messages() {
             unSub()
         }
     }, [data.chatId])
-    console.log(messages);
     return (
         <div className='messages'>
             {
                 messages?.map((map, index) => (
-                    // console.log(map)
                     <Message key={index} map={map} id={data.userDetails.uid} />
                 ))
             }

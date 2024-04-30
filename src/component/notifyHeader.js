@@ -13,12 +13,11 @@ import { ThemeContext } from "../context/themeContext";
 function NotifyHeader() {
 
   const { themes, setTheme } = React.useContext(ThemeContext)
-  console.log(themes);
+
 
 
   function handlechg(e) {
     setTheme((prevState) => prevState === "light" ? "dark" : "light");
-    console.log(themes);
   }
 
 
