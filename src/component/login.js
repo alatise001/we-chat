@@ -154,16 +154,18 @@ function Login() {
       </form>
 
       <Link to="/reset" className="links">
-        Forgot Password ?
+        <a>
+          Forgot Password ?
+        </a>
 
       </Link>
 
       <span className="logSpan ">
         <h5>Don't have an account? </h5>
         <Link className="links" to="/register">
-          <p className="links">
+          <a className="links">
             Sign Up
-          </p>
+          </a>
         </Link>
       </span>
     </div>

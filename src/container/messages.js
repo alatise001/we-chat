@@ -4,6 +4,7 @@ import { ChatContext } from '../context/chatContext'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../utility/firebase'
 
+
 function Messages() {
 
     const { data } = React.useContext(ChatContext)
@@ -18,6 +19,9 @@ function Messages() {
             unSub()
         }
     }, [data.chatId])
+
+
+
     return (
         <div className='messages'>
             {

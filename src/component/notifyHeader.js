@@ -8,11 +8,13 @@ import { faMoon } from "@fortawesome/free-solid-svg-icons";
 
 import { auth } from "../utility/firebase";
 import { ThemeContext } from "../context/themeContext";
+import { ChatContext } from "../context/chatContext";
 
 
 function NotifyHeader() {
 
   const { themes, setTheme } = React.useContext(ThemeContext)
+  const { data, dispatch } = React.useContext(ChatContext)
 
 
 
@@ -42,7 +44,7 @@ function NotifyHeader() {
         </Link> */}
 
         <Link className="links" to="/login">
-          <button className="logoutBtn" onClick={() => { signOut(auth) }}>Logout</button>
+          <button className="logoutBtn" onClick={() => { signOut(auth); dispatch({ type: "clearChart" }) }}>Logout</button>
         </Link>
       </div>
 

@@ -20,15 +20,22 @@ function ChatContextProvider({ children }) {
                         : action.details.uid + isUser.uid
                 }
 
+            case "clearChart":
+                return clearChart()
+
             default:
                 return state
         }
 
     }
 
+    function clearChart(action, state) {
+        return []
+    }
+
     const localState = JSON.parse(localStorage.getItem("chat"));
 
-    const [chat, dispatch] = useReducer(selectChat, localState)
+    const [chat, dispatch] = useReducer(selectChat, localState || [])
 
     React.useEffect(() => {
         localStorage.setItem("chat", JSON.stringify(chat));

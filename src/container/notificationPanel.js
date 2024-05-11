@@ -13,7 +13,7 @@ import { formatDistance, subDays, format, formatDistanceToNow, getMinutes, getHo
 
 function NotificationPanel() {
 
-    const { dispatch } = React.useContext(ChatContext)
+    const { data, dispatch } = React.useContext(ChatContext)
     const { isUser } = React.useContext(AuthContext)
     const [userChats, setUserChats] = React.useState([])
 
@@ -32,6 +32,7 @@ function NotificationPanel() {
         isUser.uid && getUser()
     }, [isUser.uid])
 
+    // console.log(data.length);
     function handleClick(params) {
         dispatch({ type: "setChat", details: params })
     }

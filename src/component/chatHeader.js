@@ -29,7 +29,7 @@ function ChatHeader() {
   //     return
   //   }
   // };
-  console.log(data.userDetails.photoURL);
+  // console.log(data.userDetails.photoURL);
 
 
   return (

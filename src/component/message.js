@@ -2,8 +2,13 @@ import React from 'react'
 import { formatDistance, subDays, format, formatDistanceToNow, getMinutes, getHours } from "date-fns";
 
 function Message({ map, id }) {
+    const ref = React.useRef()
 
-    const { formatRelative } = require("date-fns");
+    React.useEffect(() => {
+        ref.current.scrollIntoView({ behavior: "smooth" })
+    }, { map })
+
+    // const { formatRelative } = require("date-fns");
 
     // console.log(formatDistance(map.date.toDate(), new Date.now().));
     // console.log(
@@ -24,7 +29,7 @@ function Message({ map, id }) {
     // );
 
     return (
-        <div style={{ scrollBehavior: "smooth" }} className={`${map.senderId === id ? "message-div" : "message-sent-div"} message`}>
+        <div ref={ref} style={{ scrollBehavior: "smooth" }} className={`${map.senderId === id ? "message-div" : "message-sent-div"} message`}>
 
             {/* {map.text ? <p className={`msg-phg ${map.senderId === id ? "" : "msg-phg-sent-div"}`}>{` ${map.senderId === id ? ">" : ""} ${map.text} ${map.senderId !== id ? "<" : ""}`}</p> : <img className='msg-img' src={map.image} alt="" />} */}
             {map.text ? <p className={`msg-phg ${map.senderId === id ? "" : "msg-phg-sent-div"}`}>{`${map.text}`}</p> : <img className='msg-img' src={map.image} alt="" />}
