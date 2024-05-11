@@ -1,5 +1,5 @@
 import React, { useContext, } from "react";
-import { Navigate, Route, Routes, } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Login from "./component/login";
 import ForgotPassword from "./component/forgotPassword";
 import Profile from "./component/profile";
@@ -13,12 +13,27 @@ import PageNotFound from "./PageNotFound";
 import CombinedLayout from "./component/combinedLayout";
 import { useMediaQuery } from 'react-responsive'
 import { ThemeContext } from "./context/themeContext";
+import { ChatContext } from "./context/chatContext";
+
 
 
 function App() {
 
   const { isUser } = useContext(AuthContext)
   const { themes } = useContext(ThemeContext)
+  const { data, dispatch } = React.useContext(ChatContext)
+
+
+  const location = useLocation().pathname
+  console.log(location);
+
+
+
+  React.useEffect(() => {
+    if (location === "/") {
+      // dispatch({ type: "clearChart" })
+    }
+  }, [data])
 
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' })
 
