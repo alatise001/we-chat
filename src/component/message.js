@@ -34,12 +34,12 @@ function Message({ map, id }) {
             {/* {map.text ? <p className={`msg-phg ${map.senderId === id ? "" : "msg-phg-sent-div"}`}>{` ${map.senderId === id ? ">" : ""} ${map.text} ${map.senderId !== id ? "<" : ""}`}</p> : <img className='msg-img' src={map.image} alt="" />} */}
             {map.text ? <p className={`msg-phg ${map.senderId === id ? "" : "msg-phg-sent-div"}`}>{`${map.text}`}</p> : <img className='msg-img' src={map.image} alt="" />}
 
-            <small className={`time ${map.senderId === id ? "" : "time-sent-div"}`}>{formatDistanceToNow
+            {/* <small className={`time ${map.senderId === id ? "" : "time-sent-div"}`}>{formatDistanceToNow
                 (map.date.toDate(), {
                     includeSeconds: true,
                     addSuffix: true,
                     addPrefix: true
-                })}</small>
+                })}</small> */}
         </div>
     )
 }
