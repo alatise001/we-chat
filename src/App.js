@@ -31,7 +31,7 @@ function App() {
 
   React.useEffect(() => {
     if (location === "/") {
-      // dispatch({ type: "clearChart" })
+      dispatch({ type: "clearChart" })
     }
   }, [data])
 

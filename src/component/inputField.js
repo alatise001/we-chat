@@ -134,23 +134,11 @@ function InputField() {
     // document = null
   }
 
-  console.log(formData);
-
   return (
 
     <form className="form-div" onSubmit={handleSubmit}>
       <div className="textarea-div">
         <textarea name="message" className="textarea" placeholder="Type a message" onChange={handlechg} value={formData.message} />
-
-        {/* <input
-          className="input"
-          type="text"
-          name="message"
-          placeholder="Type a message"
-          onChange={handlechg}
-          // onBlur={handleBlur}
-          value={formData.message}
-        /> */}
       </div>
 
 
